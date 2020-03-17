@@ -1,0 +1,21 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+website_listing:
+  path: /
+  controller: App\Controller\WebsiteController::index
+
+# pricing_crawl:
+#   path: /test/crawl
+#   controller: App\Controller\TestController::crawlTest
+
+# pricing_crawl:
+#   path: /test/crawl
+#   controller: App\Controller\TestController::crawlTestSubCategory
+
+# pricing_crawl_category:
+#   path: /test/crawl-category
+#   controller: App\Controller\TestController::crawlCategory
+
+

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product listing{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <h1>Products</h1>
+</div>
+<div class="row">
+{% for product in products %}
+    <div class="col-3 p-1">
+        <div class="card">
+            <img class="card-img-top" src={{ product.productImageUrl }} alt="product" width='200' height='100'>
+            <div class="card-body">
+                <p class="">{{ product.productName[:40] ~ (product.productName|length > 40 ? '...')  }}</p>
+                <table class="table table-sm">
+                    
+                    <tr>
+                        <td>MRP:</td>
+                        <td>{{ product.productMrp }}</td>
+                    </tr>
+                    <tr>
+                        <td>Price:</td>
+                        <td>{{ product.productPrice }}</td>
+                    </tr>
+                    <tr>
+                        <td>Discount:</td>
+                        <td>{{ product.productDiscount }}</td>
+                    </tr>
+                    <tr>
+                        <td>Quantity:</td>
+                        <td>{{ product.packingQuantity }}</td>
+                    </tr>
+                    <tr>
+                        <td>MOQ:</td>
+                        <td>{{ product.moq }}</td>
+                    </tr>
+                    <tr>
+                        <td>By:</td>
+                        <td>{{ product.brand }}</td>
+                    </tr>
+                    <tr>
+                        <td>Created:</td>
+                        <td>{{ product.createdAt | date('H:i:s , d M y') }}</td>
+                    </tr>
+                </table>
+                <a href = {{ product.productUrl }} class="">View product</a><hr>
+                <a href = {{ product.similarProductsLink }} class="">View similar products in website</a>
+            </div>
+        </div>
+    </div>
+{% else %}
+<p>No records found</p>
+{% endfor %}
+</div>
+        
+{% endblock %}

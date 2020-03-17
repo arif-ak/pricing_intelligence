@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Brands{% endblock %}
+
+{% block body %}
+    <h1>Brands</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ brand.id }}</td>
+            </tr>
+            <tr>
+                <th>Brand_name</th>
+                <td>{{ brand.brandName }}</td>
+            </tr>
+            <tr>
+                <th>Brand_url</th>
+                <td>{{ brand.brandUrl }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('brands_index') }}">back to list</a>
+
+    <a href="{{ path('brands_edit', {'id': brand.id}) }}">edit</a>
+
+    {{ include('brands/_delete_form.html.twig') }}
+{% endblock %}

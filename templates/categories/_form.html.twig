@@ -1,0 +1,5 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+    <a class="btn btn-dark" href="{{ path('categories_index') }}">Back to category list</a>
+{{ form_end(form) }}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Website Listing{% endblock %}
+
+{% block body %}
+    <h1>Website index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Website Name</th>
+                <th>Website url(click to visit site)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for website in websites %}
+            <tr>
+                <td>{{ website.id }}</td>
+                <td> <a href="{{ path('website_show', {'id': website.id}) }}">{{ website.websiteName }}</a></td>
+                <td><a href="{{ website.websiteUrl }}">{{ website.websiteUrl }}</a></td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('website_show', {'id': website.id}) }}">Show</a>
+                    <a class="btn btn-primary" href="{{ path('website_edit', {'id': website.id}) }}">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('website_new') }}">Create new</a>
+{% endblock %}
