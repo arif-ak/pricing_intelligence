@@ -3,35 +3,40 @@
 {% block title %}Categories index{% endblock %}
 
 {% block body %}
-    <h1>Categories index</h1>
+    <div class="row">
+        <div class="col">
+            <h1>Categories</h1>
+        </div>
+        <div class="col">
+            <a class="btn btn-primary float-right mt-1" href="{{ path('categories_new') }}">Create new</a>
+        </div>
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Category_name</th>
-                <th>Category_url</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for category in categories %}
-            <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.categoryName }}</td>
-                <td>{{ category.categoryUrl }}</td>
-                <td>
-                    <a href="{{ path('categories_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('categories_edit', {'id': category.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a class="btn btn-primary" href="{{ path('categories_new') }}">Create new</a>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                    <th>Category Url</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.categoryName }}</td>
+                    <td>{{ category.categoryUrl }}</td>
+                    <td>
+                        <a class="btn btn-info" href="{{ path('categories_show', {'id': category.id}) }}">Show</a>
+                        <a class="btn btn-primary" href="{{ path('categories_edit', {'id': category.id}) }}">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
