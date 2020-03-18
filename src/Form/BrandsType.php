@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 
 class BrandsType extends AbstractType
 {
@@ -15,7 +16,7 @@ class BrandsType extends AbstractType
     {
         $builder
             ->add('brand_name')
-            ->add('brand_url')
+            ->add('brand_url',UrlType::class)
             ->add('website',EntityType::class,[
                 'placeholder' => 'Select a website',
                 'required' => true,

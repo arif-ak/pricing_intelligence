@@ -6,6 +6,7 @@ use App\Entity\Website;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 
 class WebsiteType extends AbstractType
 {
@@ -13,7 +14,7 @@ class WebsiteType extends AbstractType
     {
         $builder
             ->add('websiteName')
-            ->add('websiteUrl')
+            ->add('websiteUrl',UrlType::class)
         ;
     }
 
