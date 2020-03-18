@@ -21,4 +21,5 @@ A pricing intelligence tool that uses a web crawler to fetch information from e-
 ## Project running
 * run command "bin/console server:run" to run the application in your system
 * access url provided from terminal or run locally
+* please note : enter website names as "Industry Buying"(case sensitive) on website creation page, as current code only supports crawling for 'industry buying' e-commerce site
 
