@@ -1,7 +1,9 @@
 Pricing intelligence
+(Please note : enter website names as "Industry Buying"(case sensitive) on website creation page, as current code only supports crawling for 'industry buying' e-commerce site)
+
 ======
 
-## ice-cream-shop
+## pricing_intelligence
 * Symfony Framewrok v4.4.5 application demoing a pricing intelligence application
 
 A pricing intelligence tool that uses a web crawler to fetch information from e-commerce websites
@@ -21,4 +23,5 @@ A pricing intelligence tool that uses a web crawler to fetch information from e-
 ## Project running
 * run command "bin/console server:run" to run the application in your system
 * access url provided from terminal or run locally
+* please note : enter website names as "Industry Buying"(case sensitive) on website creation page, as current code only supports crawling for 'industry buying' e-commerce site
 
