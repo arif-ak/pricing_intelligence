@@ -10,7 +10,7 @@ A pricing intelligence tool that uses a web crawler to fetch information from e-
 
 ## System requirments / dependencies:
 * Apache running on a linux server [512MB+ Ram] 
-* PHP 7.2 
+* PHP 7.3 
 * Composer
 * MySQL  
 
