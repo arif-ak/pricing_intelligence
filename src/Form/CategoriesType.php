@@ -16,7 +16,14 @@ class CategoriesType extends AbstractType
     {
         $builder
             ->add('category_name')
-            ->add('category_url',UrlType::class)
+            ->add('category_url',UrlType::class,[
+                'default_protocol' => 'https',
+                'required' => true,
+                'attr' => [
+                    'placeholder' => 'https://domain.com',
+                    'pattern' => '^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'
+                ]
+            ])
             ->add('website',EntityType::class,[
                 'placeholder' => 'Select a website',
                 'required' => true,

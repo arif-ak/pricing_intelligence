@@ -14,7 +14,14 @@ class WebsiteType extends AbstractType
     {
         $builder
             ->add('websiteName')
-            ->add('websiteUrl',UrlType::class)
+            ->add('websiteUrl',UrlType::class,[
+                'default_protocol' => 'https',
+                'required' => true,
+                'attr' => [
+                    'placeholder' => 'https://domain.com',
+                    'pattern' => '^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'
+                ]
+            ])
         ;
     }
 
