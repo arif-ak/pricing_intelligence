@@ -3,6 +3,22 @@
 {% block title %}Website{% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('success') %}
+            <div class="alert alert-success flash-message alert-dismissible" role="alert">
+            <button type="button" class="flash-message-close close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+            </button>
+                {{ message }}
+            </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+            <div class="alert alert-danger flash-message alert-dismissible" role="alert">
+            <button type="button" class="flash-message-close close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+            </button>
+                {{ message }}
+            </div>
+    {% endfor %}
     <h1>Website - {{ website.websiteName }}</h1>
     <h5> ({{ website.websiteUrl }}) </h5>
     <hr>
@@ -79,4 +95,12 @@
     <a href="{{ path('website_edit', {'id': website.id}) }}">edit</a>
 
     {# include('website/_delete_form.html.twig') #}
+
+    <script>
+    
+    $(".flash-message-close").click(function () {
+        $(this).parent().remove();
+    })
+    </script>
+
 {% endblock %}

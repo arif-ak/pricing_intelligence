@@ -102,9 +102,13 @@ class BrandsController extends AbstractController
         $response = $webCrawler->crawlBrands($brand);
 
         if($response->getContent() == 'success')
-            return $this->redirectToRoute('product_index');
-
-        return $this->redirectToRoute('website_index');
+        {
+            $this->addFlash('success', 'Data retrieved! Check product listing page to view data');
+            return $this->redirectToRoute('website_show',['id' => $brand->getWebsite()->getId()]);
+        } else {
+            $this->addFlash('error', $response->getContent());
+            return $this->redirectToRoute('website_show',['id' => $brand->getWebsite()->getId()]);
+        }
 
     }
 }

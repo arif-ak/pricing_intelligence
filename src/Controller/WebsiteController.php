@@ -65,7 +65,13 @@ class WebsiteController extends AbstractController
             $response = $webCrawler->crawlCategoryAndBrand($retrieveDataObj);
 
             if($response->getContent() == 'success')
-                return $this->redirectToRoute('product_index');
+            {
+                $this->addFlash('success', 'Data retrieved! Check product listing page to view data');
+                return $this->redirectToRoute('website_show',['id' => $website->getId()]);
+            } else {
+                $this->addFlash('error', $response->getContent());
+                return $this->redirectToRoute('website_show',['id' => $website->getId()]);
+            }
         }
 
         return $this->render('website/show.html.twig', [

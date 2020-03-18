@@ -98,12 +98,16 @@ class CategoriesController extends AbstractController
      */
     public function crawlData(WebCrawler $webCrawler, Categories $category)
     {
-        // dump($category->getCategoryUrl());die;
-        $response = $webCrawler->crawlCategories($category);
-        // dump($response);die;
-
+        $response = $webCrawler->crawlIndustryBuyingCategories($category);
+        
         if($response->getContent() == 'success')
-            return $this->redirectToRoute('product_index');
+        {
+            $this->addFlash('success', 'Data retrieved! Check product listing page to view data');
+            return $this->redirectToRoute('website_show',['id' => $category->getWebsite()->getId()]);
+        } else {
+            $this->addFlash('error', $response->getContent());
+            return $this->redirectToRoute('website_show',['id' => $category->getWebsite()->getId()]);
+        }
 
         return $this->redirectToRoute('categories_index');
 

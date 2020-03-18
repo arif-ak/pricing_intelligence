@@ -29,7 +29,7 @@ class WebCrawler
         $this->targetUrl = '';
     }
 
-    public function crawlCategories($dataObject)
+    public function crawlIndustryBuyingCategories($dataObject)
     {
         $this->targetUrl = $dataObject->getCategoryUrl();
         $client = new Client();
@@ -37,18 +37,27 @@ class WebCrawler
 
         $subCategoryArray = [];
 
-        $subCategoryList = $crawler->filter('.catethumb .productTitle a')->each(function($node) {
-            $subCategoryUrl = $node->attr('href');
-           
-            return $subCategoryUrl;
-        });
+        if($dataObject->getWebsite()->getWebsiteName() == 'Industry Buying')
+        {
+            $subCategoryList = $crawler->filter('.catethumb .productTitle a')->each(function($node) {
+                $subCategoryUrl = $node->attr('href');
+                
+                return $subCategoryUrl;
+            });
 
 
-        foreach($subCategoryList as $subCategoryUrl)
-            $this->crawlPage($dataObject->getWebsite()->getWebsiteUrl() . $subCategoryUrl);
-            // array_push($subCategoryArray,$this->crawlPage($dataObject->getWebsite()->getWebsiteUrl() . $subCategoryUrl));
+            foreach($subCategoryList as $subCategoryUrl)
+                $this->crawlIndustryBuyingPage($dataObject->getWebsite()->getWebsiteUrl() . $subCategoryUrl);
+                // array_push($subCategoryArray,$this->crawlPage($dataObject->getWebsite()->getWebsiteUrl() . $subCategoryUrl));
 
-        return new Response('success');
+            return new Response('success');
+
+        } else {
+            $response = $dataObject->getWebsite()->getWebsiteUrl(). ' has not been configured for crawling. Please configure from backend.';
+            return new Response($response);
+        }
+
+        
     }
 
     public function crawlBrands($dataObject)
@@ -58,30 +67,31 @@ class WebCrawler
         $crawler = $client->request('GET', $this->targetUrl);
         $productsCount = $crawler->filter('.AH_ProductView')->count();
 
-        if($crawler->getBaseHref() != $this->targetUrl) // Check for error in input url
-        {
-            $status = false; //status flag
-            $response = "Url changed(non existent category/brand)";
-
-            return new Response($response);
-        }
-
         if($productsCount <= 0) //Check if products exist
         {
             $status = false; //status flag
-            $response = "No products exist";
+            $response = "No products found in this target page :" . $this->targetUrl;
 
             return new Response($response);
         }
 
-        $response = $this->crawlPage($this->targetUrl);
+        if($dataObject->getWebsite()->getWebsiteName() == 'Industry Buying')
+        {
+            $response = $this->crawlIndustryBuyingPage($this->targetUrl);
 
-        return new Response('success');
+            return new Response('success');
+
+        } else {
+
+            $response = $dataObject->getWebsite()->getWebsiteUrl(). ' has not been configured for crawling. Please configure from backend.';
+            return new Response($response);
+
+        }
+        
     }
 
     public function crawlCategoryAndBrand($retrieveDataObj)
     {
-        $status = true;
         $response = "success";
 
         // Constructing url for brand and category search : start
@@ -93,32 +103,39 @@ class WebCrawler
 
         // Constructing url for brand and category search : end
 
-        $client = new Client();
-        $crawler = $client->request('GET', $this->targetUrl);
-        $productsCount = $crawler->filter('.AH_ProductView')->count();
-        
-        if($crawler->getBaseHref() != $this->targetUrl) // Check for error in input url
+        if($retrieveDataObj->getBrand()->getWebsite()->getWebsiteName() == 'Industry Buying')
         {
-            $status = false; //status flag
-            $response = "Url changed(non existent category/brand)";
+            $client = new Client();
+            $crawler = $client->request('GET', $this->targetUrl);
+            $productsCount = $crawler->filter('.AH_ProductView')->count();
+            
+            if($crawler->getBaseHref() != $this->targetUrl) // Check for error in input url
+            {
+                $response = "Url changed(non existent category/brand)";
+
+                return new Response($response);
+            }
+
+            if($productsCount <= 0) //Check if products exist
+            {
+                $response = $response = "No products found in this target page: " . $this->targetUrl;
+
+                return new Response($response);
+            }
+
+            $this->crawlIndustryBuyingPage($this->targetUrl);
 
             return new Response($response);
-        }
 
-        if($productsCount <= 0) //Check if products exist
-        {
-            $status = false; //status flag
-            $response = "No products exist";
+        } else {
 
+            $response = $retrieveDataObj->getBrand()->getWebsite()->getWebsiteName() . ' has not been configured for crawling. Please configure from backend.';
             return new Response($response);
+            
         }
-
-        $this->crawlPage($this->targetUrl);
-
-        return new Response($response);
     }
 
-    public function crawlPage($uri)
+    public function crawlIndustryBuyingPage($uri)
     {
         ini_set('memory_limit', '1024M');
         set_time_limit(0);
