@@ -21,12 +21,12 @@ class Categories
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $category_name;
+    private $categoryName;
 
     /**
      * @ORM\Column(type="string", length=500, nullable=true)
      */
-    private $category_url;
+    private $categoryUrl;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Website", inversedBy="categories")
@@ -40,24 +40,24 @@ class Categories
 
     public function getCategoryName(): ?string
     {
-        return $this->category_name;
+        return $this->categoryName;
     }
 
-    public function setCategoryName(string $category_name): self
+    public function setCategoryName(string $categoryName): self
     {
-        $this->category_name = $category_name;
+        $this->categoryName = $categoryName;
 
         return $this;
     }
 
     public function getCategoryUrl(): ?string
     {
-        return $this->category_url;
+        return $this->categoryUrl;
     }
 
-    public function setCategoryUrl(?string $category_url): self
+    public function setCategoryUrl(?string $categoryUrl): self
     {
-        $this->category_url = $category_url;
+        $this->categoryUrl = $categoryUrl;
 
         return $this;
     }
@@ -76,7 +76,7 @@ class Categories
 
     public function __toString()
     {
-        return $this->category_name;
+        return $this->categoryName;
     }
 
 }

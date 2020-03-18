@@ -15,8 +15,8 @@ class BrandsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('brand_name')
-            ->add('brand_url',UrlType::class,[
+            ->add('brandName')
+            ->add('brandUrl',UrlType::class,[
                 'default_protocol' => 'https',
                 'required' => true,
                 'attr' => [

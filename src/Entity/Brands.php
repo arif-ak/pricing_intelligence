@@ -19,12 +19,12 @@ class Brands
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $brand_name;
+    private $brandName;
 
     /**
      * @ORM\Column(type="string", length=500, nullable=true)
      */
-    private $brand_url;
+    private $brandUrl;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Website", inversedBy="brands")
@@ -38,24 +38,24 @@ class Brands
 
     public function getBrandName(): ?string
     {
-        return $this->brand_name;
+        return $this->brandName;
     }
 
-    public function setBrandName(string $brand_name): self
+    public function setBrandName(string $brandName): self
     {
-        $this->brand_name = $brand_name;
+        $this->brandName = $brandName;
 
         return $this;
     }
 
     public function getBrandUrl(): ?string
     {
-        return $this->brand_url;
+        return $this->brandUrl;
     }
 
-    public function setBrandUrl(?string $brand_url): self
+    public function setBrandUrl(?string $brandUrl): self
     {
-        $this->brand_url = $brand_url;
+        $this->brandUrl = $brandUrl;
 
         return $this;
     }
@@ -74,6 +74,6 @@ class Brands
 
     public function __toString()
     {
-        return $this->brand_name;
+        return $this->brandName;
     }
 }

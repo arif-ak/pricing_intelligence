@@ -15,8 +15,8 @@ class CategoriesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('category_name')
-            ->add('category_url',UrlType::class,[
+            ->add('categoryName')
+            ->add('categoryUrl',UrlType::class,[
                 'default_protocol' => 'https',
                 'required' => true,
                 'attr' => [
