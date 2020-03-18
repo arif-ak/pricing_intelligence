@@ -1,4 +1,6 @@
 Pricing intelligence
+(Please note : enter website names as "Industry Buying"(case sensitive) on website creation page, as current code only supports crawling for 'industry buying' e-commerce site)
+
 ======
 
 ## pricing_intelligence
