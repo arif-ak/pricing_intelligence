@@ -57,7 +57,8 @@ class WebsiteController extends AbstractController
     public function show(Request $request, WebCrawler $webCrawler, Website $website): Response
     {
         $retrieveDataObj = new RetrieveDataFilter();
-        $retrieveDataForm = $this->createForm(RetrieveDataType::class, $retrieveDataObj);
+
+        $retrieveDataForm = $this->createForm(RetrieveDataType::class, $retrieveDataObj,['website' => $website]);
         $retrieveDataForm->handleRequest($request);
 
         if ($retrieveDataForm->isSubmitted() && $retrieveDataForm->isValid()) {
