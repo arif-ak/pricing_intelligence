@@ -1,6 +1,4 @@
 Pricing intelligence
-(Please note : enter website names as "Industry Buying"(case sensitive) on website creation page, as current code only supports crawling for 'industry buying' e-commerce site)
-
 ======
 
 ## pricing_intelligence
@@ -10,7 +8,7 @@ A pricing intelligence tool that uses a web crawler to fetch information from e-
 
 ## System requirments / dependencies:
 * Apache running on a linux server [512MB+ Ram] 
-* PHP 7.2 
+* PHP 7.3 
 * Composer
 * MySQL  
 
@@ -19,9 +17,10 @@ A pricing intelligence tool that uses a web crawler to fetch information from e-
 * run the command "php bin/console cache:clear"
 * run the command "php bin/console doctrine:database:create"
 * run the command "php bin/console doctrine:schema:update --force" 
+* run the command "php bin/console doctrine:fixtures:load" - This inserts 'Industry Buying' website, categories and brands into the database
 
 ## Project running
 * run command "bin/console server:run" to run the application in your system
 * access url provided from terminal or run locally
-* please note : enter website names as "Industry Buying"(case sensitive) on website creation page, as current code only supports crawling for 'industry buying' e-commerce site
+* Please note : enter website names as "Industry Buying"(case sensitive) on website creation page, as current code only supports crawling for 'industry buying' e-commerce site
 
