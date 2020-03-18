@@ -1,7 +1,7 @@
 Pricing intelligence
 ======
 
-## ice-cream-shop
+## pricing_intelligence
 * Symfony Framewrok v4.4.5 application demoing a pricing intelligence application
 
 A pricing intelligence tool that uses a web crawler to fetch information from e-commerce websites
